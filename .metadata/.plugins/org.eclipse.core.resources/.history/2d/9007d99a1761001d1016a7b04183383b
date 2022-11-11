@@ -1,0 +1,14 @@
+package com.obapp.dao;
+
+import com.obapp.exceptions.AccountantException;
+import com.obapp.model.Customer;
+
+public interface AccountantDao {
+	
+	public String signInAccountant(String username, String password) throws AccountantException;
+	
+	public String addCustomer(Customer customer) throws AccountantException;
+	
+	public String updateCustomer(String field, String value, int acnumber) throws AccountantException;
+
+}

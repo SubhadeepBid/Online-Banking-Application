@@ -1,0 +1,41 @@
+package com.obapp.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.obapp.exceptions.AccountantException;
+import com.obapp.utility.DBUtil;
+
+public class AccountantDaoImpl implements AccountantDao {
+
+	@Override
+	public String signInAccountant(String username, String password) throws AccountantException {
+		
+		// TODO Auto-generated method stub
+		
+		String message = "Invalid username or PIN...";
+		
+		try(Connection conn = DBUtil.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from customer where username = ? AND password = ?");
+			
+			ps.setString(1, username);
+			ps.setString(2, password);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) 
+				message = "Signed In Successfully!";
+			
+		} catch (Exception e) {
+			
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new AccountantException(e.getMessage());
+			
+		}
+		return message;
+	}
+
+}

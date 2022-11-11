@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class OnlineBankApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("===============================================");
+		System.out.println("|    Welcome to Online Banking Application    |");
+		System.out.println("===============================================");
+		
+		System.out.println("\nPlease select correct option\n");
+		System.out.println("	1 - Accountant Login");
+		System.out.println("	2 - Customer Login");
+		System.out.println("	3 - Exit\n");
+		
+		System.out.println("Enter your choice : ");
+		
+	}
+
+}

@@ -1,0 +1,11 @@
+package com.obapp.dao;
+
+import com.obapp.exceptions.CustomerException;
+
+public interface CustomerDao {
+	
+	public String signInCustomer(String username, int pin)throws CustomerException;
+	
+	public String transferMoneyToAccountNo(int sender, int receiver);
+
+}

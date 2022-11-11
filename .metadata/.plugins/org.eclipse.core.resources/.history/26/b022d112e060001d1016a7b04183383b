@@ -1,0 +1,110 @@
+package com.obapp.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+import com.obapp.exceptions.CustomerException;
+import com.obapp.utility.DBUtil;
+
+public class CustomerDaoImpl implements CustomerDao {
+
+	@Override
+	public String signInCustomer(String username, int pin) throws CustomerException {
+		
+		// TODO Auto-generated method stub
+		
+		String message = "Invalid username or PIN...";
+		
+		try(Connection conn = DBUtil.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from customer where email = ? AND pin = ?");
+			
+			ps.setString(1, username);
+			ps.setInt(2, pin);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) 
+				message = "Signed In Successfully!";
+			
+		} catch (SQLException e) {
+			
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new CustomerException(e.getMessage());
+			
+		}
+		
+		return message;
+		
+	}
+
+	
+	@Override
+	public String transferMoneyToAccountNo(int sender, int receiver, int money) throws CustomerException {
+		
+		// TODO Auto-generated method stub
+		String message = "Transfer Failed !";
+		
+        try(Connection conn = DBUtil.provideConnection()) {
+			
+			PreparedStatement ps1 = conn.prepareStatement("update customer set balance = balance - ? where acnumber = ?");
+			
+			ps1.setInt(1, money);
+			ps1.setInt(2, sender);
+			
+			int x1 = ps1.executeUpdate();
+			
+			PreparedStatement ps2 = conn.prepareStatement("update customer set balance = balance + ? where acnumber = ?");
+			
+			ps2.setInt(1, money);
+			ps2.setInt(2, receiver);
+			
+			int x2 = ps2.executeUpdate();
+			
+			
+			Date date = new Date();
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+			
+			PreparedStatement ps3 = conn.prepareStatement("insert into transdetails(acnumber,dot,transaction_amount,transaction_type) values(?,?,?,?)");
+			
+			ps3.setInt(1, sender);
+			ps3.setDate(2, sqlDate);
+			ps3.setInt(3, money);
+			ps3.setString(4, "Withdrawal");
+			
+			int x3 = ps3.executeUpdate();
+			
+			
+			PreparedStatement ps4 = conn.prepareStatement("insert into transdetails(acnumber,dot,transaction_amount,transaction_type) values(?,?,?,?)");
+			
+			ps4.setInt(1, receiver);
+			ps3.setDate(2, null);
+			ps4.setInt(3, money);
+			ps4.setString(4, "Deposit");
+			
+			int x4 = ps4.executeUpdate();
+			
+			if(x1 > 0 && x2 > 0) 
+				message = "Transfer Successfull...";
+			
+		} catch (SQLException e) {
+			
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new CustomerException(e.getMessage());
+			
+		}
+		
+		return message;
+	}
+
+	
+	
+}

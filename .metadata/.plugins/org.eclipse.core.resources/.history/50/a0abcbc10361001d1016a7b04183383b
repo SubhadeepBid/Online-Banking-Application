@@ -1,0 +1,5 @@
+package com.obapp.model;
+
+public class Customer {
+
+}

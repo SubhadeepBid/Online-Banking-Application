@@ -1,0 +1,43 @@
+package com.obapp.usecases;
+
+import java.util.Scanner;
+
+import com.obapp.dao.AccountantDao;
+import com.obapp.dao.AccountantDaoImpl;
+import com.obapp.exceptions.AccountantException;
+
+public class UpdateCustomer {
+
+	public static void main(String[] args) {
+		
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the Field you want to change : ");
+		String field = sc.next(); 
+		
+		System.out.println("Enter the value : ");
+		String value = sc.next();  
+		
+		System.out.println("Enter the A/c. No. : ");
+		int acnumber = sc.nextInt();
+		
+		AccountantDao dao = new AccountantDaoImpl();
+		
+		try {
+			
+			String result = dao.updateCustomer(field, value, acnumber);
+			System.out.println(result);
+			
+		} catch (AccountantException e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
+		}
+
+	}
+
+}

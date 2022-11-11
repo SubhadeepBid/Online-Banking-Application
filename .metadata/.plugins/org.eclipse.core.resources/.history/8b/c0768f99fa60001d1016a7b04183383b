@@ -1,0 +1,5 @@
+package com.obapp.dao;
+
+public interface AccountantDao {
+
+}

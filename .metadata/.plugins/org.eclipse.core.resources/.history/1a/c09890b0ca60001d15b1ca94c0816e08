@@ -1,0 +1,5 @@
+package com.obapp.usecases;
+
+public class TransferMoneyToAccountNo {
+
+}

@@ -1,0 +1,49 @@
+package com.obapp.usecases;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.obapp.dao.CustomerDao;
+import com.obapp.dao.CustomerDaoImpl;
+import com.obapp.exceptions.CustomerException;
+import com.obapp.model.TransHistory;
+
+public class GetTransactionHistory {
+
+	public static void main(String[] args) {
+		
+		// TODO Auto-generated method stub
+		
+        Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter your A/c no. : ");
+		int acnumber = sc.nextInt();
+		
+		CustomerDao dao = new CustomerDaoImpl();
+		
+		try {
+			
+			List<TransHistory> list = dao.getTransactionHistory(acnumber);
+			
+			System.out.println("---------------------------------------------------");
+			System.out.printf("%-16s%-20s%6s%6s\n", "Transaction ID", "Date", "Amount", "Type");
+			
+			list.forEach(s -> {
+				
+//				System.out.println("A/c no. " + s.getAcnumber());
+				System.out.printf("%-6d%-20s%6d%6s\n", s.getTnumber(), s.getDot(), s.getTransaction_amount(), s.getTransaction_type());
+				
+				
+			});
+			
+		} catch (CustomerException e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
+		}
+
+	}
+
+}
