@@ -8,6 +8,36 @@ import com.obapp.exceptions.CustomerException;
 
 public class TransferMoneyToAccountNo {
 	
+	public static void transferAmt(int sender) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("\nEnter the Recipient A/c no. : ");
+		int receiver = sc.nextInt();
+		
+		System.out.println("Enter the amount : ");
+		int money = sc.nextInt();
+		
+		CustomerDao dao = new CustomerDaoImpl();
+		
+		try {
+			
+			String result = dao.transferMoneyToAccountNo(sender, receiver, money);
+			System.out.println(result);
+			
+		} catch (CustomerException e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
+		}
+		
+		System.out.println("\n=============================");
+		
+	}
+	
+	/*
 	public static void main(String[] args) {
 		
         Scanner sc = new Scanner(System.in);
@@ -37,5 +67,6 @@ public class TransferMoneyToAccountNo {
 		}
 		
 	}
+	*/
 
 }

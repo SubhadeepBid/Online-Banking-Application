@@ -17,11 +17,24 @@
     <fullyQualifiedTypeName name="com.obapp.model.Customer"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="com.obapp.dao.CustomerDao"/>
     <fullyQualifiedTypeName name="com.obapp.dao.CustomerDaoImpl"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="com.obapp.usecases.SignInAccountant"/>
     <fullyQualifiedTypeName name="com.obapp.exceptions.AccountantException"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.AddCustomer"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.UpdateCustomer"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.RemoveCustomer"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.ShowCustomerAccount"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.ShowAllCustomers"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.SignInCustomer"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.DepositAmount"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.WithdrawAmount"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.TransferMoneyToAccountNo"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.CheckBalance"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.GetTransactionHistory"/>
+    <fullyQualifiedTypeName name="com.obapp.usecases.ChangePin"/>
+    <fullyQualifiedTypeName name="java.util.ResourceBundle"/>
 </qualifiedTypeNameHistroy>

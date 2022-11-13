@@ -7,7 +7,34 @@ import com.obapp.dao.AccountantDaoImpl;
 import com.obapp.exceptions.AccountantException;
 
 public class RemoveCustomer {
+	
+	public static void removeCust() {
+		
+        Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter A/c No. : ");
+		int acnumber = sc.nextInt();
+		
+		AccountantDao dao = new AccountantDaoImpl();
+		
+		try {
+			
+			String result = dao.removeCustomer(acnumber);
+			System.out.println(result);
+			System.out.println("=============================");
+			
+		} catch (AccountantException e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
+		}
 
+	}
+
+
+	/*
 	public static void main(String[] args) {
 		
 		// TODO Auto-generated method stub
@@ -33,5 +60,6 @@ public class RemoveCustomer {
 		}
 
 	}
+	*/
 
 }

@@ -7,7 +7,7 @@ import com.obapp.model.TransHistory;
 
 public interface CustomerDao {
 	
-	public String signInCustomer(String username, int pin) throws CustomerException;
+	public int signInCustomer(String username, int pin) throws CustomerException;
 	
 	public String transferMoneyToAccountNo(int sender, int receiver, int money) throws CustomerException;
 	

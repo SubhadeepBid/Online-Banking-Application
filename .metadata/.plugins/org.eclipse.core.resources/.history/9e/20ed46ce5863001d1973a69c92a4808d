@@ -28,8 +28,6 @@ public class UpdateCustomer {
 		System.out.println("Enter the A/c. No. : ");
 		int acnumber = sc.nextInt();
 		
-		sc.nextLine();
-		
 		System.out.println("Enter the new value : ");
 		String value = sc.nextLine();  
 		

@@ -14,7 +14,7 @@ public class SignInAccountant {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Enter username : ");
+		System.out.println("\nEnter username : ");
 	    String username = sc.next();
 				
 		System.out.println("Enter password : ");
@@ -26,6 +26,7 @@ public class SignInAccountant {
     		
 			String result = dao.signInAccountant(username, password);
 			System.out.println(result);
+			
 			if(result == "Signed In Successfully!")
 				res = true;
 			
@@ -36,6 +37,7 @@ public class SignInAccountant {
 			
 		}
 		
+    	System.out.println("\n=======================");
 		return res;
 		
 	}

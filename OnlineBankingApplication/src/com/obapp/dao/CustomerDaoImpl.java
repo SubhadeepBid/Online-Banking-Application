@@ -16,11 +16,11 @@ import com.obapp.utility.DBUtil;
 public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
-	public String signInCustomer(String username, int pin) throws CustomerException {
+	public int signInCustomer(String username, int pin) throws CustomerException {
 		
 		// TODO Auto-generated method stub
 		
-		String message = "Invalid username or PIN...";
+		int acnumber = 0;
 		
 		try(Connection conn = DBUtil.provideConnection()) {
 			
@@ -32,8 +32,8 @@ public class CustomerDaoImpl implements CustomerDao {
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) 
-				message = "Signed In Successfully!";
-			
+				acnumber = rs.getInt("acnumber");
+				
 		} catch (SQLException e) {
 			
 			// TODO: handle exception
@@ -42,7 +42,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			
 		}
 		
-		return message;
+		return acnumber;
 		
 	}
 
@@ -88,7 +88,6 @@ public class CustomerDaoImpl implements CustomerDao {
 					Date date = new Date();
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 					java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-					
 					
 					PreparedStatement ps5 = conn.prepareStatement("insert into transdetails(acnumber,dot,transaction_amount,transaction_type) values(?,?,?,?)");
 					
@@ -213,6 +212,20 @@ public class CustomerDaoImpl implements CustomerDao {
 				if(bal.next()) 
 					message += "Current Balance : " + bal.getInt("balance");
 				
+				Date date = new Date();
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+				java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+				
+				
+				PreparedStatement ps6 = conn.prepareStatement("insert into transdetails(acnumber,dot,transaction_amount, transaction_type) values(?,?,?,?)");
+				
+				ps6.setInt(1, acnumber);
+				ps6.setDate(2, sqlDate);
+				ps6.setInt(3, money);
+				ps6.setString(4, "Deposit");
+				
+				int x6 = ps6.executeUpdate();
+				
 			}
 			
 		} catch (SQLException e) {
@@ -262,6 +275,20 @@ public class CustomerDaoImpl implements CustomerDao {
 						
 						if(bal.next()) 
 							message += "Current Balance : " + bal.getInt("balance");
+						
+						Date date = new Date();
+						SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+						java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+						
+						
+						PreparedStatement ps5 = conn.prepareStatement("insert into transdetails(acnumber,dot,transaction_amount,transaction_type) values(?,?,?,?)");
+						
+						ps5.setInt(1, acnumber);
+						ps5.setDate(2, sqlDate);
+						ps5.setInt(3, money);
+						ps5.setString(4, "Withdrawal");
+						
+						int x5 = ps5.executeUpdate();
 						
 					}
 				
