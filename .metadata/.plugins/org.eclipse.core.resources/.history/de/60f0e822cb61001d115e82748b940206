@@ -1,0 +1,37 @@
+package com.obapp.usecases;
+
+import java.util.Scanner;
+
+import com.obapp.dao.AccountantDao;
+import com.obapp.dao.AccountantDaoImpl;
+import com.obapp.exceptions.AccountantException;
+
+public class RemoveCustomer {
+
+	public static void main(String[] args) {
+		
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter A/c No. : ");
+		int acnumber = sc.nextInt();
+		
+		AccountantDao dao = new AccountantDaoImpl();
+		
+		try {
+			
+			String result = dao.removeCustomer(acnumber);
+			System.out.println(result);
+			
+		} catch (AccountantException e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
+		}
+
+	}
+
+}

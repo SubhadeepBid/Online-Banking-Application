@@ -1,0 +1,196 @@
+import java.util.Scanner;
+
+import com.obapp.usecases.AddCustomer;
+import com.obapp.usecases.ChangePin;
+import com.obapp.usecases.CheckBalance;
+import com.obapp.usecases.DepositAmount;
+import com.obapp.usecases.GetTransactionHistory;
+import com.obapp.usecases.RemoveCustomer;
+import com.obapp.usecases.ShowAllCustomers;
+import com.obapp.usecases.ShowCustomerAccount;
+import com.obapp.usecases.SignInAccountant;
+import com.obapp.usecases.SignInCustomer;
+import com.obapp.usecases.TransferMoneyToAccountNo;
+import com.obapp.usecases.UpdateCustomer;
+import com.obapp.usecases.WithdrawAmount;
+
+public class OnlineBankApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("===============================================");
+		System.out.println("|    Welcome to Online Banking Application    |");
+		System.out.println("===============================================");
+		
+		boolean i1 = true;
+		
+		while(i1) {
+			
+			System.out.println("\n\nPlease select correct option\n");
+			System.out.println("	1 - Accountant Login");
+			System.out.println("	2 - Customer Login");
+			System.out.println("	3 - Exit\n");
+			
+			System.out.print("Enter your choice : ");
+			
+			int ch1 = sc.nextInt();
+			
+			switch(ch1) {
+			
+			case 1: System.out.println("\n\nAccountant Login");
+			        System.out.println("=======================");
+				
+					if(SignInAccountant.signInAcct()) {
+			        	
+						boolean i2 = true;
+						
+						while(i2) {
+							
+							System.out.println("\n\nPlease select correct option\n");
+							System.out.println("	1 - Add Customer");
+							System.out.println("	2 - Update Customer");
+							System.out.println("	3 - Remove Customer");
+							System.out.println("	4 - Show Customer");
+							System.out.println("	5 - Show All Customers");
+							System.out.println("	6 - Log Out\n");
+							System.out.print("Enter your choice : ");
+							
+							int ch2 = sc.nextInt();
+							
+							switch(ch2) {
+							
+							case 1: System.out.println("\n\nAdd Customer");
+							        System.out.println("===============================");
+							        AddCustomer.addCust();
+							        break;
+							        
+							case 2: System.out.println("\n\nUpdate Customer");
+							        System.out.println("====================================");
+							        UpdateCustomer.updateCust();
+							        break;
+							        
+							case 3: System.out.println("\n\nRemove Customer");
+							        System.out.println("=============================");
+							        RemoveCustomer.removeCust();
+							        break;
+							        
+							case 4: System.out.println("\n\nShow Customer");
+							        System.out.println("================================================================================================================================================");
+							        ShowCustomerAccount.showCust();
+							        break;
+							        
+							case 5: System.out.println("\n\nShow All Custumers");
+							        System.out.println("===============================================================================================================================================");
+							        ShowAllCustomers.showAllCust();
+							        break;
+							        
+							case 6: i2 = false;
+							        break;
+							        
+							default: System.out.println("Wrong Choice!");
+							
+							}
+							
+						}
+			        	
+			        }
+				
+			        break;
+			        
+			case 2: System.out.println("\n\nCustomer Login");
+			        System.out.println("=======================");
+			        
+			        int x = SignInCustomer.signInCust();
+			        
+			        if(x != 0) {
+			        	
+			        	boolean i3 = true;
+			        	
+			        	while(i3) {
+			        		/*
+			        		System.out.println("\n\nPlease select correct option\n");
+							System.out.println("	1 - Deposit Amount");
+							System.out.println("	2 - Withdraw Amount");
+							System.out.println("	3 - Transfer Amount");
+							System.out.println("	4 - Check Balance");
+							System.out.println("	5 - Get Transaction History");
+							System.out.println("    6 - Change PIN");
+							System.out.println("	7 - Log Out\n");
+							System.out.print("Enter your choice : ");
+							*/
+			        		
+			        		System.out.println("\n\nPlease select correct option\n");
+			        		System.out.println("    1 - Deposit Amount");
+			        		System.out.println("    2 - Withdraw Amount");
+			        		System.out.println("    3 - Transfer Amount");
+			        		System.out.println("    4 - Check Balance");
+			        		System.out.println("    5 - Get Transaction History");
+			        		System.out.println("    6 - Change PIN");
+			        		System.out.println("    7 - Log Out\n");
+			        		System.out.print("Enter your choice : ");
+							
+							int ch3 = sc.nextInt();
+							
+							switch(ch3) {
+							
+							case 1: System.out.println("\n\nDeposit Amount");
+					                System.out.println("===============================");
+					                DepositAmount.depositAmt(x);
+					                break;
+					                
+							case 2: System.out.println("\n\nWithdraw Amount");
+					                System.out.println("===============================");
+					                WithdrawAmount.withdrawAmt(x);
+					                break;
+					                
+							case 3: System.out.println("\n\nTransfer Amount");
+					                System.out.println("===============================");
+					                TransferMoneyToAccountNo.transferAmt(x);
+					                break;
+					                
+							case 4: System.out.println("\n\nCheck Balance");
+					                System.out.println("===============================");
+					                CheckBalance.checkBal(x);
+					                break;
+					                
+							case 5: System.out.println("\n\nGet Transaction History");
+							        System.out.println("===============================");
+					                GetTransactionHistory.getTransHist(x);
+					                break;
+					                
+							case 6: System.out.println("\n\nChange PIN");
+					                System.out.println("===============================");
+					                ChangePin.changPin(x);
+					                break;
+					                
+							case 7: i3 = false;
+							        break;
+							        
+							default: System.out.println("Wrong Choice!");
+							
+							}
+			        		
+			        	}
+			        	
+			        }
+			        
+			        break;
+			        
+			case 3: System.out.println("\n\nThank You for using our Online Banking Application!");
+			        i1 = false;
+		            break;
+		            
+		    default: System.out.println("\n\nWrong Choice!");
+			
+			}
+			
+		}
+		
+		sc.close();
+		
+	}
+
+}
